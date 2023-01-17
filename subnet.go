@@ -30,6 +30,14 @@ func main() {
 	} else if cloudProvider == "Azure" {
 		vpcReservation = 4
 	}
+
+	for ip := ip.Mask(ipnet.Mask); ipnet.Contains(ip); inc(ip) {
+		usableIPs = append(usableIPs, ip.String())
+	}
+	if subnetAddress != nil {
+		fmt.Println("Subnet address: ", subnetAddress)
+		fmt.Println("Usable IPs: ", usableIPs[vpcReservation:len(usableIPs)])
+	}
 }
 
 func inc(ip net.IP) {
