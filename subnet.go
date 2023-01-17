@@ -17,4 +17,17 @@ func main() {
 
 	fmt.Print("Enter Mask: ")
 	fmt.Scanln(&mask)
+
+	ip, ipnet, _ := net.ParseCIDR(networkAddress + "/" + mask)
+	subnetAddress = ipnet
+
+	fmt.Print("Select the Cloud provider - AWS,GCP or Azure): ")
+	var cloudProvider string
+	fmt.Scanln(&cloudProvider)
+
+	if cloudProvider == "AWS" || cloudProvider == "GCP" {
+		vpcReservation = 5
+	} else if cloudProvider == "Azure" {
+		vpcReservation = 4
+	}
 }
