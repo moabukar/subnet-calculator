@@ -21,6 +21,11 @@ func main() {
 	ip, ipnet, _ := net.ParseCIDR(networkAddress + "/" + mask)
 	subnetAddress = ipnet
 
+	// if ipnet.Mask.Size < 32 { // check if the mask size is less than 32
+	// 	fmt.Println("Invalid mask, /32, /31, and /30 masks are not supported.")
+	// 	os.Exit(1)
+	// }
+
 	fmt.Print("Select the Cloud provider - AWS,GCP or Azure): ")
 	var cloudProvider string
 	fmt.Scanln(&cloudProvider)
